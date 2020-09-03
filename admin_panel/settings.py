@@ -137,6 +137,7 @@ LOGIN_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_SESSION_REMEMBER = 'None'
 ACCOUNT_LOGOUT_REDIRECT_URL = '../login/'
+ACCOUNT_SIGNUP_FORM_CLASS = 'form.forms.SignupForm'
 
 
 # Static files (CSS, JavaScript, Images)
