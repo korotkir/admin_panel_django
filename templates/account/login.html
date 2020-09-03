@@ -1,0 +1,51 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %} 
+{# socialaccount %}#}
+{% load crispy_forms_tags %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+            
+<div class="title">{% trans "Log In" %}</div>
+{% if socialaccount_providers %}
+
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+
+{% endif %}
+
+<div class="row justify-content-center">
+<div class="col-10 col-sm-10 col-md-10 col-lg-1 col-xl-10">
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  <div class="name">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+   <center><div class="register name3"><a href="/accounts/signup/">Sign up</a></div></center>
+   <center><button type="submit" class="btn btn-danger custom">Log In</button></center>
+  <!--<button type=type="submit">{% trans "Sign In" %}</button>-->
+</form>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
